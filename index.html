@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Momentum — Empowering Startups</title>
+  <link rel="icon" type="image/jpeg" href="icon.JPG">
+  <style>
+    :root {
+      --color-primary: #0f172a;
+      --color-secondary: #1e293b;
+      --color-accent: #0d9488;
+      --color-accent-light: #14b8a6;
+      --color-text: #334155;
+      --color-light: #f8fafc;
+      --color-white: #ffffff;
+      --color-border: #e2e8f0;
+      --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --transition: 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-main);
+      color: var(--color-text);
+      line-height: 1.7;
+      background: var(--color-white);
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Navigation */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-border);
+      padding: 0.75rem 0;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--color-primary);
+    }
+
+    .logo img {
+      height: 40px;
+      width: auto;
+      border-radius: 6px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--color-text);
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--color-accent);
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--color-primary);
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      background:
+        linear-gradient(135deg, rgba(15, 23, 42, 0.90) 0%, rgba(30, 41, 59, 0.90) 100%),
+        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      color: var(--color-white);
+      padding: 8rem 1.5rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      opacity: 0.9;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.875rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-primary {
+      background: var(--color-accent);
+      color: var(--color-white);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--color-white);
+      border: 2px solid var(--color-white);
+    }
+
+    /* Sections */
+    section {
+      padding: 5rem 1.5rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      text-align: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #64748b;
+      margin-bottom: 3rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .bg-light {
+      background: var(--color-light);
+    }
+
+    .bg-dark {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+      color: var(--color-white);
+    }
+
+    .bg-dark .section-title {
+      color: var(--color-white);
+    }
+
+    .bg-dark .section-subtitle {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* About */
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    /* Services */
+    .services-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .service-item:last-child {
+      border-bottom: none;
+    }
+
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      min-width: 56px;
+      background: rgba(13, 148, 136, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-accent);
+    }
+
+    .service-body h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: var(--color-primary);
+    }
+
+    .service-body p {
+      line-height: 1.6;
+    }
+
+    /* How It Works */
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .step {
+      flex: 1 1 220px;
+      max-width: 280px;
+      text-align: center;
+    }
+
+    .step-number {
+      width: 64px;
+      height: 64px;
+      background: var(--color-accent);
+      color: var(--color-white);
+      font-size: 1.5rem;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+    }
+
+    .step h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+      color: var(--color-primary);
+    }
+
+    /* Portfolio */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .portfolio-item {
+      background: var(--color-white);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      transition: transform var(--transition);
+      border-top: 4px solid var(--color-accent);
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-4px);
+    }
+
+    .portfolio-body {
+      padding: 1.5rem;
+    }
+
+    .portfolio-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .portfolio-body h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+      color: var(--color-primary);
+    }
+
+    /* Testimonials */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .testimonial {
+      background: var(--color-white);
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid var(--color-border);
+      position: relative;
+    }
+
+    .testimonial .quote-icon {
+      color: var(--color-accent);
+      margin-bottom: 0.75rem;
+      opacity: 0.4;
+    }
+
+    .testimonial p {
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-author {
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+
+    .testimonial-role {
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+
+    /* Team */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+
+    .team-member {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-align: left;
+    }
+
+    .team-photo {
+      width: 64px;
+      height: 64px;
+      border-radius: 10px;
+      background: var(--color-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+      font-weight: 700;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .team-member h3 {
+      font-size: 1.15rem;
+      color: var(--color-primary);
+    }
+
+    .team-member span {
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+
+    /* Partners */
+    .partners-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .partner-badge {
+      font-weight: 600;
+      color: var(--color-text);
+      font-size: 0.95rem;
+      padding: 0.5rem 1.25rem;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      background: var(--color-white);
+      opacity: 0.85;
+      transition: opacity var(--transition), border-color var(--transition);
+    }
+
+    .partner-badge:hover {
+      opacity: 1;
+      border-color: var(--color-accent);
+    }
+
+    /* FAQ */
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 1.25rem 0;
+      background: none;
+      border: none;
+      text-align: left;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-question::after {
+      content: '\002B';
+      font-size: 1.25rem;
+      color: var(--color-accent);
+      transition: transform var(--transition);
+    }
+
+    .faq-item.active .faq-question::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--transition), padding var(--transition);
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+      padding-bottom: 1.25rem;
+    }
+
+    /* Contact */
+    #contact {
+      position: relative;
+      background:
+        linear-gradient(rgba(15, 23, 42, 0.90) 0%, rgba(30, 41, 59, 0.90) 100%),
+        url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      color: var(--color-white);
+    }
+
+    #contact .section-title {
+      color: var(--color-white);
+    }
+
+    #contact .section-subtitle {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      margin-bottom: 1rem;
+      color: var(--color-white);
+    }
+
+    .contact-info p {
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      color: var(--color-white);
+      font-family: inherit;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      outline: none;
+      transition: border-color var(--transition), background var(--transition);
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--color-accent-light);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .contact-form textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .contact-form .btn {
+      width: 100%;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 3rem 1.5rem 1.5rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-grid h4 {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .footer-grid a {
+      display: block;
+      margin-bottom: 0.5rem;
+      opacity: 0.8;
+      transition: opacity var(--transition);
+    }
+
+    .footer-grid a:hover {
+      opacity: 1;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: background var(--transition);
+    }
+
+    .social-links a:hover {
+      background: var(--color-accent);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: var(--color-white);
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1.25rem;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        transform: translateY(-150%);
+        transition: transform var(--transition);
+        display: flex;
+      }
+
+      .nav-links.open {
+        transform: translateY(0);
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .hero h1 {
+        font-size: 2.25rem;
+      }
+
+      .section-title {
+        font-size: 1.75rem;
+      }
+
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="logo">
+        <img src="icon.JPG" alt="Momentum logo">
+        <span>Momentum</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="container">
+      <h1>Build Momentum for Your Startup</h1>
+      <p>We empower early-stage founders with the tools, mentorship, and network needed to turn bold ideas into thriving businesses.</p>
+      <a href="#services" class="btn btn-primary">Explore Services</a>
+      <a href="#contact" class="btn btn-outline" style="margin-left: 0.75rem;">Get In Touch</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About Us</h2>
+      <p class="section-subtitle">Momentum is on a mission to democratize startup success across Africa and beyond.</p>
+      <div class="about-content">
+        <p>We believe every great idea deserves a fair shot. Since our founding, Momentum has supported dozens of startups with hands-on mentorship, strategic funding connections, and access to a vibrant community of founders, investors, and industry experts.</p>
+        <p style="margin-top: 1rem;">Our programs are designed to meet founders where they are — whether you are validating your first prototype or scaling into new markets. Join us and build something extraordinary.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="bg-light" id="services">
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-subtitle">Everything you need to launch, grow, and scale your startup.</p>
+      <div class="services-list">
+        <div class="service-item">
+          <div class="service-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+          </div>
+          <div class="service-body">
+            <h3>Startup Acceleration</h3>
+            <p>Intensive programs designed to fast-track your growth with curated mentorship and structured sprints.</p>
+          </div>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="service-body">
+            <h3>Mentorship &amp; Coaching</h3>
+            <p>One-on-one guidance from seasoned founders and operators who have walked the same path.</p>
+          </div>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div class="service-body">
+            <h3>Investor Matching</h3>
+            <p>Connect with the right investors through our curated network of angel investors and venture capital firms.</p>
+          </div>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+          </div>
+          <div class="service-body">
+            <h3>Pitch Training</h3>
+            <p>Polish your story and delivery so you can confidently present to investors, partners, and customers.</p>
+          </div>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-1 1.5-2 1.5-3.5a6 6 0 0 0-12 0c0 1.5.5 2.5 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+          </div>
+          <div class="service-body">
+            <h3>Product Strategy</h3>
+            <p>Work with experts to define your value proposition, roadmap, and go-to-market strategy.</p>
+          </div>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div class="service-body">
+            <h3>Community Access</h3>
+            <p>Join a thriving ecosystem of founders, alumni, and partners who support each other every step of the way.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works">
+    <div class="container">
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-subtitle">Your journey from idea to impact in four simple steps.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Apply</h3>
+          <p>Submit your application and tell us about your vision, team, and traction so far.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Assess</h3>
+          <p>Our team reviews your fit and schedules a Discovery Call to understand your unique needs.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Accelerate</h3>
+          <p>Get matched with mentors, resources, and a personalized roadmap to reach your milestones.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Scale</h3>
+          <p>Graduate with a stronger product, a refined pitch, and a warm introduction to our investor network.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section class="bg-light" id="portfolio">
+    <div class="container">
+      <h2 class="section-title">Startups We Helped</h2>
+      <p class="section-subtitle">A glimpse into the ventures that have gone on to raise, hire, and grow.</p>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <div class="portfolio-body">
+            <span class="portfolio-tag">AgriTech</span>
+            <h3>GrowSmart</h3>
+            <p>IoT-powered irrigation systems helping smallholder farmers double their yields.</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-body">
+            <span class="portfolio-tag">FinTech</span>
+            <h3>PayBridge</h3>
+            <p>Cross-border payment infrastructure built for African SMEs and freelancers.</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-body">
+            <span class="portfolio-tag">HealthTech</span>
+            <h3>MediLink</h3>
+            <p>Telemedicine platform connecting patients in remote areas with specialists.</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-body">
+            <span class="portfolio-tag">EdTech</span>
+            <h3>SkillCamp</h3>
+            <p>Micro-credentialing platform bridging the gap between education and employment.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="bg-light" id="testimonials">
+    <div class="container">
+      <h2 class="section-title">Success Stories</h2>
+      <p class="section-subtitle">Hear from founders who have built momentum with us.</p>
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <div class="quote-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.956.76-3.022.66-1.065 1.515-1.867 2.558-2.403L9.373 5c-.8.396-1.56.898-2.26 1.505-.71.607-1.34 1.305-1.9 2.094s-.98 1.68-1.25 2.69-.346 2.04-.217 3.1c.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l.002.003zm9.124 0c0-.88-.23-1.618-.69-2.217-.326-.42-.768-.695-1.327-.825-.55-.13-1.07-.14-1.54-.03-.16-.94.09-1.95.75-3.02.66-1.06 1.514-1.86 2.557-2.4L18.49 5c-.8.396-1.555.898-2.26 1.505-.708.607-1.34 1.305-1.894 2.094-.556.79-.97 1.68-1.24 2.69-.273 1-.345 2.04-.217 3.1.165 1.4.615 2.52 1.35 3.35.732.833 1.646 1.25 2.742 1.25.967 0 1.768-.29 2.402-.876.627-.576.942-1.365.942-2.368v.01z"/></svg>
+          </div>
+          <p>"Momentum gave us the clarity and connections we needed. Within six months, we closed our seed round and hired our first ten employees."</p>
+          <div class="testimonial-author">Amina Ochieng</div>
+          <div class="testimonial-role">CEO, GrowSmart</div>
+        </div>
+        <div class="testimonial">
+          <div class="quote-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.956.76-3.022.66-1.065 1.515-1.867 2.558-2.403L9.373 5c-.8.396-1.56.898-2.26 1.505-.71.607-1.34 1.305-1.9 2.094s-.98 1.68-1.25 2.69-.346 2.04-.217 3.1c.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l.002.003zm9.124 0c0-.88-.23-1.618-.69-2.217-.326-.42-.768-.695-1.327-.825-.55-.13-1.07-.14-1.54-.03-.16-.94.09-1.95.75-3.02.66-1.06 1.514-1.86 2.557-2.4L18.49 5c-.8.396-1.555.898-2.26 1.505-.708.607-1.34 1.305-1.894 2.094-.556.79-.97 1.68-1.24 2.69-.273 1-.345 2.04-.217 3.1.165 1.4.615 2.52 1.35 3.35.732.833 1.646 1.25 2.742 1.25.967 0 1.768-.29 2.402-.876.627-.576.942-1.365.942-2.368v.01z"/></svg>
+          </div>
+          <p>"The mentorship was world-class. Our mentors didn't just advise — they opened doors that would have taken years to find on our own."</p>
+          <div class="testimonial-author">James Mwangi</div>
+          <div class="testimonial-role">Co-founder, PayBridge</div>
+        </div>
+        <div class="testimonial">
+          <div class="quote-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.956.76-3.022.66-1.065 1.515-1.867 2.558-2.403L9.373 5c-.8.396-1.56.898-2.26 1.505-.71.607-1.34 1.305-1.9 2.094s-.98 1.68-1.25 2.69-.346 2.04-.217 3.1c.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l.002.003zm9.124 0c0-.88-.23-1.618-.69-2.217-.326-.42-.768-.695-1.327-.825-.55-.13-1.07-.14-1.54-.03-.16-.94.09-1.95.75-3.02.66-1.06 1.514-1.86 2.557-2.4L18.49 5c-.8.396-1.555.898-2.26 1.505-.708.607-1.34 1.305-1.894 2.094-.556.79-.97 1.68-1.24 2.69-.273 1-.345 2.04-.217 3.1.165 1.4.615 2.52 1.35 3.35.732.833 1.646 1.25 2.742 1.25.967 0 1.768-.29 2.402-.876.627-.576.942-1.365.942-2.368v.01z"/></svg>
+          </div>
+          <p>"Joining Momentum was the turning point for our startup. The community alone is worth its weight in gold."</p>
+          <div class="testimonial-author">Leah Njeri</div>
+          <div class="testimonial-role">Founder, SkillCamp</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="bg-light" id="team">
+    <div class="container">
+      <h2 class="section-title">Our Team</h2>
+      <p class="section-subtitle">Passionate operators, investors, and mentors dedicated to your success.</p>
+      <div class="team-grid">
+        <div class="team-member">
+          <div class="team-photo">DK</div>
+          <div>
+            <h3>David Kimani</h3>
+            <span>Executive Director</span>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-photo">SO</div>
+          <div>
+            <h3>Sarah Oduor</h3>
+            <span>Head of Programs</span>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-photo">MK</div>
+          <div>
+            <h3>Michael Kiptoo</h3>
+            <span>Lead Mentor</span>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-photo">JW</div>
+          <div>
+            <h3>Jessica Wanjiku</h3>
+            <span>Partnerships Lead</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners -->
+  <section id="partners">
+    <div class="container">
+      <h2 class="section-title">Our Partners</h2>
+      <p class="section-subtitle">Collaborating with organizations that share our vision for transformative entrepreneurship.</p>
+      <div class="partners-grid">
+        <span class="partner-badge">Safaricom Foundation</span>
+        <span class="partner-badge">Villgro Africa</span>
+        <span class="partner-badge">iHub Nairobi</span>
+        <span class="partner-badge">Acumen Fund</span>
+        <span class="partner-badge">GoGettaz</span>
+        <span class="partner-badge">MEST Africa</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-light" id="faq">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-subtitle">Everything you need to know before joining Momentum.</p>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">Who can apply to Momentum?</button>
+          <div class="faq-answer">
+            <p>We welcome early-stage startups with a validated idea, a committed team, and a clear vision for growth. Whether pre-revenue or generating early traction, we have programs tailored to your stage.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Is there a cost to join?</button>
+          <div class="faq-answer">
+            <p>Most of our core programs are equity-free and subsidized by our partners. Some specialized tracks may have a small program fee. We are committed to keeping opportunities accessible.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How long is the acceleration program?</button>
+          <div class="faq-answer">
+            <p>Our flagship acceleration program runs for 12 weeks, combining weekly workshops, mentoring sessions, and milestone-driven check-ins.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Do you provide funding directly?</button>
+          <div class="faq-answer">
+            <p>We do not invest directly, but we prepare you for investment and make warm introductions to investors in our network. Many of our alumni successfully raise within months of graduation.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Can I apply from outside Kenya?</button>
+          <div class="faq-answer">
+            <p>Yes! While our hub is in Nairobi, our programs are hybrid and open to ambitious founders across Africa. Virtual participation options are available for most activities.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact Us</h2>
+      <p class="section-subtitle">Ready to build momentum? Reach out and let's start the conversation.</p>
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h3>Get in Touch</h3>
+          <p>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Nairobi, Kenya
+          </p>
+          <p>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+            +254-712-345-678
+          </p>
+          <p>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2Z"/><polyline points="22,6 12,13 2,6"/></svg>
+            hello@momentum.co.ke
+          </p>
+          <p>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Mon – Fri, 08:00 – 17:00 EAT
+          </p>
+          <h3 style="margin-top: 1.5rem;">Follow Us</h3>
+          <div class="social-links">
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="LinkedIn">LI</a>
+            <a href="#" aria-label="Twitter">X</a>
+            <a href="#" aria-label="Facebook">FB</a>
+          </div>
+        </div>
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you for reaching out! We will get back to you soon.');">
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+          <input type="text" placeholder="Subject">
+          <textarea placeholder="Your Message" required></textarea>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Momentum</h4>
+          <p style="opacity: 0.8; font-size: 0.95rem;">Empowering startups with mentorship, capital connections, and a thriving community.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#team">Team</a>
+          <a href="#partners">Partners</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <a href="#">Blog</a>
+          <a href="#">Events</a>
+          <a href="#">Careers</a>
+          <a href="#">Press Kit</a>
+        </div>
+        <div>
+          <h4>Connect</h4>
+          <a href="#">Instagram</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Twitter / X</a>
+          <a href="#">Facebook</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Momentum. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    // Close mobile nav when a link is clicked
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        if (!isActive) item.classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
